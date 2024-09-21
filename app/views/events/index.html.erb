@@ -1,0 +1,19 @@
+<h1>Welcome to Eventbrite!</h1>
+<% if user_signed_in? %>
+    <%= button_to "My Profile", user_path(current_user), method: :get %>
+    <br>
+    <%= button_to "Sign Out", destroy_user_session_path, method: :delete %>
+<% else %>
+    <%= button_to "Sign In", new_user_session_path, method: :get %>
+<% end %>
+
+<br>
+<br>
+<br>
+<br>
+
+<% @events.each do |event| %>
+    <ul>
+        <li><%= event.name %></li>
+    </ul>
+<% end %>

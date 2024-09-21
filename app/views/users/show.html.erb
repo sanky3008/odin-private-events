@@ -1,0 +1,14 @@
+<h1>Welcome to <%= @user.email %>!</h1>
+<h2>Here are your created events</h2>
+
+<br>
+<br>
+<%= link_to "Create an Event", new_event_path, method: :get %>
+<br>
+<br>
+
+<ul>
+    <% @user.events.all.each do |event| %>
+        <li><%= event.name %></li>
+    <% end %>
+</ul>
