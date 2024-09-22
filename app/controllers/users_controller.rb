@@ -3,5 +3,6 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
+    @events = @user.attended_events
   end
 end

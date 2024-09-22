@@ -9,11 +9,32 @@
 
 <br>
 <br>
+
+<h2>Upcoming Events</h2>
+
+<% @events_upcoming.each do |event| %>
+    <ul>
+        <li>
+            <%= link_to event.name, event_path(event), method: :get %> 
+            <% if user_signed_in? and !Attendee.where(attendee_id: current_user.id).where(attended_event_id: event.id).exists? %>
+                <%= button_to "Attend Event", attendees_path, method: :post, params: { attendee_id: current_user.id, attended_event_id: event.id } %>
+            <% end %>
+        </li>
+    </ul>
+<% end %>
+
 <br>
 <br>
 
-<% @events.each do |event| %>
+<h2>Past Events</h2>
+
+<% @events_past.each do |event| %>
     <ul>
-        <li><%= event.name %></li>
+        <li>
+            <%= link_to event.name, event_path(event), method: :get %> 
+            <% if user_signed_in? and !Attendee.where(attendee_id: current_user.id).where(attended_event_id: event.id).exists? %>
+                <%= button_to "Attend Event", attendees_path, method: :post, params: { attendee_id: current_user.id, attended_event_id: event.id } %>
+            <% end %>
+        </li>
     </ul>
 <% end %>

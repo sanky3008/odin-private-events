@@ -7,8 +7,29 @@
 <br>
 <br>
 
+<h2>Created events</h2>
 <ul>
-    <% @user.events.all.each do |event| %>
+    <% @user.created_events.all.each do |event| %>
+        <li><%= event.name %></li>
+    <% end %>
+</ul>
+
+<br>
+<br>
+
+<h2>Upcoming events</h2>
+<ul>
+    <% @events.where("date >=  date('now')").all.each do |event| %>
+        <li><%= event.name %></li>
+    <% end %>
+</ul>
+
+<br>
+<br>
+
+<h2>Attended events</h2>
+<ul>
+    <% @events.where("date <  date('now')").all.each do |event| %>
         <li><%= event.name %></li>
     <% end %>
 </ul>
